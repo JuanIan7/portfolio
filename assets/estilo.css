@@ -269,3 +269,9 @@ label.rot small, legend small { font-weight: 500; color: var(--cinza); }
 .secao .abre p.nota-mao { font-size: 1.7rem; margin-top: 16px; }
 .carta p.assina, .bilhete p.assina { font-family: var(--mao); font-size: 2.7rem; line-height: 1; color: var(--preto); margin-top: 20px; }
 .pedido .abre p.oi { color: var(--preto); margin-top: 0; }
+
+/* Frase escolhida pelo Juan (20/11/2026). No celular vai ao lado do rosto; em tela larga vai na legenda da foto. */
+.frase-mao { display: block; font-family: var(--mao); font-style: normal; font-weight: 700; font-size: 1.5rem; line-height: 1.05; color: var(--laranja-escuro); margin-top: 3px; }
+.abertura .oi { align-items: center; }
+.abertura .oi img { width: 68px; height: 68px; flex: none; }
+@media (min-width: 900px) { .abertura .frase-mao { display: none; } }
