@@ -15,7 +15,7 @@
 <link rel="icon" href="assets/logo-juanian7.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Caveat:wght@600;700&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/estilo.css">
 </head>
 <body>
@@ -24,6 +24,7 @@
   <div class="dentro">
     <a class="marca" href="./"><img src="assets/logo-juanian7.png" alt="" width="44" height="44">JuanIan7</a>
     <nav aria-label="Seções">
+      <a class="so-grande" href="#quem">Quem faz</a>
       <a class="so-grande" href="#feitos">O que já fiz</a>
       <a class="so-grande" href="#precos">Quanto custa</a>
       <a class="so-grande" href="#como">Como funciona</a>
@@ -35,8 +36,17 @@
 <main>
   <section class="abertura">
     <div class="dentro">
-      <h1>O que você <span>precisa?</span></h1>
-      <p class="apoio">Toque em uma opção e descreva o resto. Eu respondo com uma proposta em PDF.</p>
+      <div class="abre-topo">
+        <div>
+          <p class="oi"><img src="assets/fotos/juan-rosto.jpg" alt="" width="56" height="56"><span>Oi, eu sou o Juan.</span></p>
+          <h1>O que você <span class="rabisco">precisa?<svg viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true"><path d="M4 16c38-9 78-12 118-9 30 2 44 9 76 8 34-1 62-8 98-6"/></svg></span></h1>
+          <p class="apoio">Toque em uma opção e me conte o resto. Eu mesmo leio e respondo com uma proposta em PDF.</p>
+        </div>
+        <figure class="retrato">
+          <img src="assets/fotos/juan-hangar.jpg" alt="Juan sorrindo, de jaqueta laranja" width="1040" height="1300">
+          <figcaption>sou eu quem faz<br>e quem atende</figcaption>
+        </figure>
+      </div>
       <ul class="escolhas">
         <li><a href="#pedido" data-opcao="Um site">
           <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>
@@ -60,11 +70,27 @@
     </div>
   </section>
 
+  <section class="secao quem" id="quem">
+    <div class="dentro">
+      <figure class="foto-quem">
+        <img src="assets/fotos/juan-campo.jpg" alt="Juan de boné, ao ar livre, sorrindo" width="1000" height="1125" loading="lazy">
+      </figure>
+      <div class="carta">
+        <p class="mao">Prazer, Juan.</p>
+        <h2>Uma pessoa só, do pedido à entrega</h2>
+        <p>Moro no Rio de Janeiro e construo sozinho tudo o que está nesta página.</p>
+        <p>Comecei resolvendo problemas de perto: o controle da clínica da minha esposa, um sistema para a minha equipe, jogos para o meu filho. Os amigos começaram a pedir, e virou serviço.</p>
+        <p>Por isso você não fala com um atendente nem com um robô. Fala comigo.</p>
+        <p class="assina">Juan</p>
+      </div>
+    </div>
+  </section>
+
   <section class="secao cinza" id="feitos">
     <div class="dentro">
       <div class="abre">
         <h2>O que já fiz</h2>
-        <p>Trabalhos em uso hoje. As telas abaixo são ilustrações, sem dados de ninguém.</p>
+        <p>Cada um nasceu de um pedido de alguém próximo. As telas são ilustrações, sem dados de ninguém.</p>
       </div>
       <div class="feitos">
         <article class="feito">
@@ -80,6 +106,7 @@
             </svg>
           </div>
           <div class="txt">
+            <span class="para">feito para a minha esposa</span>
             <h3>Controle de uma clínica veterinária</h3>
             <p>Agenda, estoque, caixa e lucro do mês num lugar só.</p>
             <span class="n">10 telas</span>
@@ -99,6 +126,7 @@
             </svg>
           </div>
           <div class="txt">
+            <span class="para">feito para a minha equipe</span>
             <h3>Sistema de gestão para uma equipe</h3>
             <p>Com login para cada pessoa da equipe.</p>
             <span class="n">125 telas</span>
@@ -114,6 +142,7 @@
             </svg>
           </div>
           <div class="txt">
+            <span class="para">feito para mim mesmo</span>
             <h3>Radar de boletins</h3>
             <p>Procura um nome nos boletins e diários oficiais, destaca no PDF e guarda.</p>
             <span class="n">Destaca no PDF</span>
@@ -132,6 +161,7 @@
             </svg>
           </div>
           <div class="txt">
+            <span class="para">feito para o trabalho</span>
             <h3>Planilhas que calculam sozinhas</h3>
             <p>Você preenche o básico. A planilha soma, confere e avisa o que falta.</p>
             <span class="n">Google Planilhas</span>
@@ -146,6 +176,7 @@
       <div class="abre">
         <h2>Quanto custa</h2>
         <p>Previsão de valores. O valor fechado vem na proposta, antes de qualquer pagamento.</p>
+        <p class="mao nota-mao">sem surpresa depois</p>
       </div>
       <div class="precos">
         <div class="preco destaque">
@@ -182,9 +213,11 @@
 
   <section class="secao">
     <div class="dentro seu">
-      <div class="abre" style="margin-bottom:0">
+      <div class="bilhete">
+        <p class="mao">Meu compromisso</p>
         <h2>Tudo fica no seu nome</h2>
         <p>Eu entro como colaborador, por convite, sem a sua senha. Se um dia a parceria acabar, o que foi feito continua seu.</p>
+        <p class="assina">Juan</p>
       </div>
       <ul>
         <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg></span><div>O endereço do site<small>Domínio registrado por você</small></div></li>
@@ -197,8 +230,10 @@
   <section class="secao pedido" id="pedido">
     <div class="dentro">
       <div class="abre">
+        <p class="oi"><img src="assets/fotos/juan-rosto.jpg" alt="" width="56" height="56" loading="lazy"><span>Sou eu quem lê o seu pedido.</span></p>
         <h2>Faça o seu pedido</h2>
-        <p>Sem compromisso. Eu respondo pelo contato que você escolher.</p>
+        <p>Sem compromisso. Conte do seu jeito, que eu respondo pelo contato que você escolher.</p>
+        <p class="mao nota-mao">leva uns 3 minutos</p>
       </div>
       <p class="previa" id="previa">Prévia do site: o envio ainda não está ligado. Ao tocar em "Enviar pedido", o resumo aparece aqui embaixo e nada é enviado.</p>
       <form id="form-pedido" novalidate>

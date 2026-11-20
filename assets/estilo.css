@@ -6,10 +6,11 @@
   --preto: #141414;
   --texto: #2B2B2B;
   --cinza: #5C5C5C;
-  --linha: #E3E3E3;
-  --fundo: #F6F6F6;
+  --linha: #EADFD6;
+  --fundo: #FBF5EF;   /* cinza quente, puxado para o laranja */
   --branco: #FFFFFF;
   --titulo: "Bricolage Grotesque", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --mao: "Caveat", "Bradley Hand", "Segoe Print", cursive;
   --corpo: "Instrument Sans", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --largura: 1080px;
   --raio: 18px;
@@ -190,3 +191,81 @@ label.rot small, legend small { font-weight: 500; color: var(--cinza); }
 }
 
 .preco.destaque .val small { color: #2a1203; }
+
+/* ------------------------------------------------------------------ Toque pessoal (20/11/2026, pedido do Juan)
+   Fotos dele, letra de mão em poucos lugares e caixas mais quentes. */
+.mao { font-family: var(--mao); font-weight: 700; font-size: 1.75rem; line-height: 1; color: var(--laranja-escuro); }
+.nota-mao { display: inline-block; transform: rotate(-3deg); margin-top: 14px !important; }
+.assina { font-family: var(--mao); font-weight: 700; font-size: 2.5rem; line-height: 1; color: var(--preto); margin-top: 18px !important; transform: rotate(-4deg); transform-origin: left; }
+
+.oi { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; font-weight: 700; color: var(--preto); font-size: 1.05rem; }
+.oi img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 3px solid var(--laranja); }
+
+.rabisco { position: relative; display: inline-block; }
+.rabisco svg { position: absolute; left: -2%; right: -2%; bottom: -.16em; width: 104%; height: .26em; fill: none; stroke: var(--preto); stroke-width: 5; stroke-linecap: round; }
+
+/* Retrato tipo foto revelada: só aparece na abertura em tela larga */
+.retrato { display: none; margin: 0; }
+.retrato, .foto-quem { position: relative; }
+.retrato img { width: 100%; height: auto; border-radius: 6px; }
+
+/* Quem faz */
+.quem { background: var(--laranja-claro); }
+.quem .dentro { display: grid; gap: 30px; }
+.foto-quem { margin: 0 auto; width: min(100%, 330px); background: var(--branco); padding: 12px 12px 14px; border-radius: 10px; box-shadow: 0 18px 40px rgba(120, 60, 10, .2); transform: rotate(-2.5deg); }
+.foto-quem::before { content: ""; position: absolute; top: -14px; left: 50%; width: 110px; height: 30px; margin-left: -55px; background: rgba(242, 106, 27, .55); transform: rotate(3deg); border-radius: 3px; }
+.foto-quem img { border-radius: 4px; width: 100%; height: auto; }
+.carta h2 { font-size: clamp(1.8rem, 6vw, 2.6rem); margin: 10px 0 18px; max-width: 16ch; }
+.carta p { color: var(--texto); font-size: 1.08rem; max-width: 46ch; }
+.carta p + p { margin-top: 12px; }
+.carta .mao { font-size: 2rem; }
+
+/* Cartões do que já fiz: mais quentes, com o "feito para" à mão */
+.feito { border: 0; box-shadow: 0 10px 30px rgba(120, 60, 10, .1); transition: transform .2s; }
+.feito:hover { transform: translateY(-4px) rotate(-.4deg); }
+.feito .quadro { background: linear-gradient(160deg, #FFE3CC, #FFF4EA 70%); border-bottom: 0; padding: 22px 22px 0; }
+.feito .txt { padding: 16px 20px 22px; }
+.para { display: inline-block; font-family: var(--mao); font-weight: 700; font-size: 1.45rem; line-height: 1; color: var(--laranja-escuro); transform: rotate(-2deg); margin-bottom: 8px; }
+.feito .txt .n { background: var(--preto); color: var(--branco); }
+
+/* Preços: cantos mais macios e sombra quente no lugar da linha preta */
+.preco { border: 0; border-radius: 22px; box-shadow: 0 10px 30px rgba(120, 60, 10, .12); background: var(--fundo); }
+.preco.destaque { background: var(--laranja); box-shadow: 0 16px 36px rgba(242, 106, 27, .35); transform: rotate(-1deg); }
+
+/* Como funciona */
+.passos li::before { font-family: var(--mao); font-size: 3.2rem; color: var(--laranja-escuro); }
+
+/* Compromisso: um bilhete assinado */
+.bilhete { position: relative; background: var(--laranja-claro); border-radius: 6px 22px 22px 22px; padding: 28px 26px 24px; box-shadow: 0 14px 34px rgba(120, 60, 10, .14); transform: rotate(-1deg); }
+.bilhete::before { content: ""; position: absolute; top: -12px; left: 34px; width: 96px; height: 26px; background: rgba(242, 106, 27, .55); transform: rotate(-4deg); border-radius: 3px; }
+.bilhete h2 { margin: 8px 0 14px; }
+.bilhete p { color: var(--texto); font-size: 1.08rem; max-width: 40ch; }
+.seu li { border: 0; box-shadow: 0 6px 18px rgba(120, 60, 10, .09); border-radius: 16px; }
+
+/* Pedido */
+.pedido .oi span { font-size: 1.1rem; }
+.escolha, .campo input, .campo select, .campo textarea { border-color: #D9C7B8; }
+.cliente { border: 0; background: var(--fundo); box-shadow: 0 8px 24px rgba(120, 60, 10, .08); }
+
+@media (min-width: 900px) {
+  .abre-topo { display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: center; }
+  .retrato { display: block; background: var(--branco); padding: 12px 12px 10px; border-radius: 10px; box-shadow: 0 22px 50px rgba(120, 60, 10, .22); transform: rotate(3deg); }
+  .retrato::before { content: ""; position: absolute; top: -14px; left: 50%; width: 110px; height: 30px; margin-left: -55px; background: rgba(242, 106, 27, .55); transform: rotate(-4deg); border-radius: 3px; }
+  .retrato figcaption { font-family: var(--mao); font-weight: 700; font-size: 1.5rem; line-height: 1.05; text-align: center; color: var(--preto); padding: 10px 0 4px; }
+  .abertura .oi img { display: none; }
+  .quem .dentro { grid-template-columns: 330px 1fr; gap: 64px; align-items: center; }
+  .foto-quem { margin: 0; }
+}
+@media (min-width: 720px) {
+  .seu { align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feito { transition: none; }
+  .feito:hover { transform: none; }
+}
+
+/* A letra de mão precisa vencer os estilos de parágrafo de cada seção */
+.secao .abre p.mao, .carta p.mao, .bilhete p.mao { font-family: var(--mao); font-size: 1.9rem; line-height: 1; color: var(--laranja-escuro); max-width: none; }
+.secao .abre p.nota-mao { font-size: 1.7rem; margin-top: 16px; }
+.carta p.assina, .bilhete p.assina { font-family: var(--mao); font-size: 2.7rem; line-height: 1; color: var(--preto); margin-top: 20px; }
+.pedido .abre p.oi { color: var(--preto); margin-top: 0; }
