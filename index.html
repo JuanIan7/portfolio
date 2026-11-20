@@ -75,6 +75,8 @@ p { margin:0; }
 .foto:nth-child(odd) { transform:rotate(-1.6deg); } .foto:nth-child(even) { transform:rotate(1.4deg); }
 .foto .quadro { background:linear-gradient(160deg,#FFE3CC,#FFF4EA 70%); padding:14px 14px 0; border-radius:4px; }
 .foto .quadro svg { width:100%; height:auto; border-radius:8px 8px 0 0; }
+.foto .quadro img { display:block; width:100%; height:auto; border-radius:8px 8px 0 0; box-shadow:0 0 0 1px rgba(20,20,20,.10), 0 -6px 18px rgba(194,78,10,.10); }
+.foto .quadro + h3 { margin-top:14px; }
 .foto .para { font-family:var(--mao); font-weight:700; font-size:1.5rem; color:var(--escuro); display:block; margin:12px 4px 2px; line-height:1; }
 .foto h3 { font-size:1.15rem; margin:0 4px; line-height:1.15; }
 .foto p { color:var(--cinza); font-size:.95rem; margin:6px 4px 0; }
@@ -213,40 +215,10 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
       <h2>O que já fiz</h2>
       <p class="sub">cada um nasceu de um pedido de alguém próximo</p>
       <div class="mural">
-        <article class="foto fita"><div class="quadro"><svg viewBox="0 0 400 190" role="img" aria-label="Ilustração de um painel com agenda e caixa">
-              <rect width="400" height="190" fill="#fff"/>
-              <rect width="400" height="30" fill="#141414"/><circle cx="18" cy="15" r="5" fill="#F26A1B"/><rect x="32" y="11" width="70" height="8" rx="4" fill="#fff" opacity=".85"/>
-              <rect x="16" y="46" width="112" height="56" rx="8" fill="#FFF1E7"/><rect x="26" y="56" width="50" height="7" rx="3.5" fill="#C24E0A"/><rect x="26" y="74" width="78" height="14" rx="4" fill="#141414"/>
-              <rect x="144" y="46" width="112" height="56" rx="8" fill="#F6F6F6"/><rect x="154" y="56" width="50" height="7" rx="3.5" fill="#9a9a9a"/><rect x="154" y="74" width="64" height="14" rx="4" fill="#141414"/>
-              <rect x="272" y="46" width="112" height="56" rx="8" fill="#F6F6F6"/><rect x="282" y="56" width="50" height="7" rx="3.5" fill="#9a9a9a"/><rect x="282" y="74" width="84" height="14" rx="4" fill="#141414"/>
-              <g fill="#E3E3E3"><rect x="16" y="118" width="368" height="14" rx="4"/><rect x="16" y="140" width="368" height="14" rx="4"/><rect x="16" y="162" width="368" height="14" rx="4"/></g>
-              <rect x="16" y="140" width="150" height="14" rx="4" fill="#F26A1B"/>
-            </svg></div><span class="para">feito para a minha esposa</span><h3>Controle de uma clínica veterinária</h3><p>Agenda, estoque, caixa e lucro do mês. 10 telas.</p></article>
-        <article class="foto fita"><div class="quadro"><svg viewBox="0 0 400 190" role="img" aria-label="Ilustração de um sistema com menu lateral e cadastro">
-              <rect width="400" height="190" fill="#fff"/>
-              <rect width="92" height="190" fill="#141414"/><circle cx="24" cy="22" r="9" fill="#F26A1B"/>
-              <g fill="#fff" opacity=".7"><rect x="14" y="48" width="62" height="8" rx="4"/><rect x="14" y="68" width="50" height="8" rx="4"/><rect x="14" y="88" width="58" height="8" rx="4"/><rect x="14" y="108" width="44" height="8" rx="4"/></g>
-              <rect x="8" y="63" width="76" height="18" rx="6" fill="#F26A1B" opacity=".9"/><rect x="14" y="68" width="50" height="8" rx="4" fill="#fff"/>
-              <rect x="110" y="18" width="130" height="14" rx="4" fill="#141414"/>
-              <g fill="#F6F6F6"><rect x="110" y="48" width="274" height="26" rx="6"/><rect x="110" y="82" width="274" height="26" rx="6"/><rect x="110" y="116" width="274" height="26" rx="6"/><rect x="110" y="150" width="274" height="26" rx="6"/></g>
-              <g fill="#9a9a9a"><rect x="122" y="57" width="90" height="8" rx="4"/><rect x="122" y="91" width="120" height="8" rx="4"/><rect x="122" y="125" width="74" height="8" rx="4"/><rect x="122" y="159" width="104" height="8" rx="4"/></g>
-              <g fill="#F26A1B"><rect x="330" y="55" width="42" height="12" rx="6"/><rect x="330" y="123" width="42" height="12" rx="6"/></g>
-            </svg></div><span class="para">feito para a minha equipe</span><h3>Sistema de gestão para uma equipe</h3><p>Com login para cada pessoa. 125 telas.</p></article>
-        <article class="foto fita"><div class="quadro"><svg viewBox="0 0 400 190" role="img" aria-label="Ilustração de uma busca que destaca um nome em um documento">
-              <rect width="400" height="190" fill="#fff"/>
-              <rect x="16" y="16" width="368" height="34" rx="17" fill="#F6F6F6" stroke="#E3E3E3" stroke-width="2"/><circle cx="38" cy="33" r="7" fill="none" stroke="#141414" stroke-width="2.5"/><rect x="56" y="29" width="120" height="8" rx="4" fill="#141414"/>
-              <g fill="#E3E3E3"><rect x="16" y="68" width="368" height="9" rx="4.5"/><rect x="16" y="86" width="330" height="9" rx="4.5"/><rect x="16" y="122" width="368" height="9" rx="4.5"/><rect x="16" y="140" width="300" height="9" rx="4.5"/><rect x="16" y="158" width="350" height="9" rx="4.5"/></g>
-              <rect x="16" y="102" width="368" height="13" rx="4" fill="#FFF1E7"/><rect x="92" y="102" width="130" height="13" rx="4" fill="#F26A1B"/>
-            </svg></div><span class="para">feito para mim mesmo</span><h3>Radar de boletins</h3><p>Procura um nome nos boletins e diários oficiais e destaca no PDF.</p></article>
-        <article class="foto fita"><div class="quadro"><svg viewBox="0 0 400 190" role="img" aria-label="Ilustração de uma planilha com totais calculados">
-              <rect width="400" height="190" fill="#fff"/>
-              <rect width="400" height="30" fill="#F6F6F6"/>
-              <g stroke="#E3E3E3" stroke-width="2"><path d="M0 30h400M0 62h400M0 94h400M0 126h400M0 158h400M100 0v190M200 0v190M300 0v190"/></g>
-              <g fill="#9a9a9a"><rect x="14" y="11" width="50" height="8" rx="4"/><rect x="114" y="11" width="40" height="8" rx="4"/><rect x="214" y="11" width="56" height="8" rx="4"/><rect x="314" y="11" width="44" height="8" rx="4"/></g>
-              <g fill="#141414"><rect x="14" y="42" width="66" height="8" rx="4"/><rect x="14" y="74" width="54" height="8" rx="4"/><rect x="14" y="106" width="72" height="8" rx="4"/><rect x="114" y="42" width="34" height="8" rx="4"/><rect x="114" y="74" width="34" height="8" rx="4"/><rect x="114" y="106" width="34" height="8" rx="4"/><rect x="214" y="42" width="44" height="8" rx="4"/><rect x="214" y="74" width="44" height="8" rx="4"/><rect x="214" y="106" width="44" height="8" rx="4"/></g>
-              <rect x="300" y="126" width="100" height="32" fill="#F26A1B"/><rect x="314" y="138" width="60" height="9" rx="4.5" fill="#fff"/>
-              <rect x="300" y="62" width="100" height="32" fill="#FFF1E7"/><rect x="314" y="74" width="48" height="8" rx="4" fill="#C24E0A"/>
-            </svg></div><span class="para">feito para o trabalho</span><h3>Planilhas que calculam sozinhas</h3><p>Você preenche o básico. A planilha soma, confere e avisa.</p></article>
+        <article class="foto fita"><div class="quadro"><img src="assets/trabalhos/trabalho-clinica.jpg" alt="Tela do controle da clínica: novo atendimento, com paciente, serviços e resumo do valor" width="1200" height="571" loading="lazy"></div><h3>Controle de uma clínica veterinária</h3><p>Agenda, estoque, caixa e lucro do mês. 10 telas.</p></article>
+        <article class="foto fita"><div class="quadro"><img src="assets/trabalhos/trabalho-equipe.jpg" alt="Tela do sistema da equipe: menu lateral e os controles de uma seção" width="1200" height="571" loading="lazy"></div><span class="para">feito para a minha equipe</span><h3>Sistema de gestão para uma equipe</h3><p>Com login para cada pessoa. 125 telas.</p></article>
+        <article class="foto fita"><div class="quadro"><img src="assets/trabalhos/trabalho-radar.jpg" alt="Tela do Radar de boletins: boletins e diários conferidos e os últimos documentos encontrados" width="1200" height="571" loading="lazy"></div><span class="para">feito para mim mesmo</span><h3>Radar de boletins</h3><p>Procura um nome nos boletins e diários oficiais e destaca no PDF.</p></article>
+        <article class="foto fita"><div class="quadro"><img src="assets/trabalhos/trabalho-planilha.jpg" alt="Planilha de avaliação que soma os pontos e calcula a nota final de cada aluno" width="1200" height="571" loading="lazy"></div><span class="para">feito para o trabalho</span><h3>Planilhas que calculam sozinhas</h3><p>Você preenche o básico. A planilha soma, confere e avisa.</p></article>
       </div>
     </div>
   </section>
