@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JuanIan7 · opção 2 de layout (Conversa)</title>
+<meta name="robots" content="noindex">
+<meta name="author" content="JuanIan7 (https://github.com/JuanIan7)">
+<meta name="copyright" content="© 2026 Juan Carlos Silva de Araujo. Todos os direitos reservados.">
+<link rel="icon" href="../../assets/logo-juanian7.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Caveat:wght@600;700&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root { --laranja:#F26A1B; --escuro:#C24E0A; --claro:#FFF1E7; --preto:#141414; --texto:#2B2B2B; --cinza:#5C5C5C; --fundo:#FBF5EF; --linha:#EADFD6;
+  --titulo:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif; --corpo:"Instrument Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif; --mao:"Caveat","Bradley Hand",cursive; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--fundo); color:var(--texto); font-family:var(--corpo); font-size:17px; line-height:1.45; }
+img, svg { max-width:100%; height:auto; display:block; }
+a { color:var(--escuro); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .escolha:focus-within { outline:3px solid var(--preto); outline-offset:3px; }
+h1, h2, h3 { font-family:var(--titulo); color:var(--preto); margin:0; letter-spacing:-.02em; line-height:1.05; }
+p { margin:0; }
+
+/* Cabeçalho de conversa */
+.topo { position:sticky; top:0; z-index:10; background:#fff; border-bottom:1px solid var(--linha); border-top:6px solid var(--laranja); }
+.topo .dentro { max-width:1080px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; gap:12px; }
+.topo img { width:46px; height:46px; border-radius:50%; object-fit:cover; border:2px solid var(--laranja); }
+.topo b { display:block; font-family:var(--titulo); font-size:1.08rem; color:var(--preto); line-height:1.1; }
+.topo small { color:var(--cinza); font-size:.85rem; white-space:nowrap; }
+.topo .botao { white-space:nowrap; }
+.topo b { white-space:nowrap; }
+.topo small::before { content:""; display:inline-block; width:8px; height:8px; border-radius:50%; background:#2E9E4F; margin-right:6px; }
+.topo .botao { margin-left:auto; }
+.botao { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px; border-radius:999px; background:var(--preto); color:#fff !important; font-weight:700; font-size:.93rem; text-decoration:none; border:0; cursor:pointer; font-family:var(--corpo); }
+.botao:hover { background:var(--escuro); }
+
+.palco { max-width:1080px; margin:0 auto; padding:0 16px; }
+.lado { display:none; }
+.conversa { max-width:640px; margin:0 auto; padding:22px 0 40px; display:grid; gap:10px; }
+
+/* Balões */
+.dia { justify-self:center; font-size:.8rem; color:var(--cinza); background:#fff; border-radius:999px; padding:4px 14px; margin:14px 0 6px; box-shadow:0 2px 8px rgba(120,60,10,.08); }
+.msg { justify-self:start; max-width:88%; background:#fff; border-radius:6px 20px 20px 20px; padding:12px 16px; box-shadow:0 4px 14px rgba(120,60,10,.1); }
+.msg + .msg { border-radius:20px; }
+.msg.grande { font-family:var(--titulo); font-weight:800; font-size:clamp(2rem,9vw,3rem); letter-spacing:-.035em; line-height:.98; color:var(--preto); padding:16px 18px; }
+.msg.grande span { color:var(--laranja); }
+.msg.mao { font-family:var(--mao); font-weight:700; font-size:1.9rem; line-height:1.05; color:var(--escuro); }
+.msg.larga { max-width:100%; width:100%; }
+.eu { justify-self:end; max-width:80%; background:var(--laranja); color:var(--preto); font-weight:600; border-radius:20px 20px 6px 20px; padding:11px 16px; margin-top:12px; box-shadow:0 4px 14px rgba(242,106,27,.3); }
+.eu + .msg { margin-top:2px; }
+.foto-msg { padding:6px; }
+.foto-msg { max-width:min(88%, 340px); }
+.foto-msg img { border-radius:14px; width:100%; }
+.foto-msg p { padding:8px 10px 6px; }
+
+/* Respostas rápidas */
+.rapidas { list-style:none; margin:6px 0 4px; padding:0; display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
+.rapidas a { display:inline-flex; align-items:center; gap:8px; min-height:48px; padding:8px 16px 8px 10px; border-radius:999px; border:2px solid var(--preto); background:#fff; color:var(--preto); font-weight:700; font-size:.95rem; text-decoration:none; transition:transform .15s, background .15s; }
+.rapidas a:hover { background:var(--claro); transform:translateY(-2px); }
+.rapidas .ic { width:32px; height:32px; border-radius:50%; background:var(--laranja); display:grid; place-items:center; flex:none; }
+.rapidas .ic svg { width:18px; height:18px; fill:none; stroke:#fff; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+
+/* Trabalhos: fileira que desliza */
+.fileira { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 14px; margin:0 -16px; padding-left:16px; padding-right:16px; }
+.feito { flex:0 0 78%; max-width:330px; scroll-snap-align:start; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 6px 18px rgba(120,60,10,.12); }
+.feito .quadro { background:linear-gradient(160deg,#FFE3CC,#FFF4EA 70%); padding:14px 14px 0; }
+.feito .quadro svg { border-radius:8px 8px 0 0; width:100%; height:auto; }
+.feito .txt { padding:12px 16px 16px; }
+.feito .para { font-family:var(--mao); font-weight:700; font-size:1.35rem; color:var(--escuro); line-height:1; display:block; margin-bottom:4px; }
+.feito h3 { font-size:1.08rem; line-height:1.15; }
+.feito p { color:var(--cinza); font-size:.92rem; margin-top:6px; }
+
+/* Preço, passos e itens dentro de balão */
+.linhas { display:grid; gap:0; margin-top:8px; }
+.linhas div { display:grid; grid-template-columns:1fr auto; gap:10px; align-items:baseline; padding:12px 0; border-top:1px dashed var(--linha); }
+.linhas div:first-child { border-top:0; }
+.linhas span { color:var(--texto); }
+.linhas span small { display:block; color:var(--cinza); font-size:.85rem; }
+.linhas b { font-family:var(--titulo); font-weight:800; font-size:1.35rem; color:var(--preto); white-space:nowrap; letter-spacing:-.02em; }
+.linhas b small { font-family:var(--corpo); font-weight:600; font-size:.8rem; color:var(--cinza); letter-spacing:0; }
+.nota { color:var(--cinza); font-size:.9rem; margin-top:8px; }
+ol.passos { margin:6px 0 0; padding:0; list-style:none; counter-reset:p; display:grid; gap:10px; }
+ol.passos li { counter-increment:p; display:grid; grid-template-columns:34px 1fr; gap:10px; align-items:start; }
+ol.passos li::before { content:counter(p); font-family:var(--mao); font-weight:700; font-size:2rem; line-height:.8; color:var(--escuro); }
+ol.passos b { color:var(--preto); }
+ul.seus { list-style:none; margin:8px 0 0; padding:0; display:grid; gap:6px; }
+ul.seus li { padding-left:26px; position:relative; }
+ul.seus li::before { content:""; position:absolute; left:2px; top:.45em; width:12px; height:7px; border-left:3px solid var(--escuro); border-bottom:3px solid var(--escuro); transform:rotate(-45deg); }
+.assina { font-family:var(--mao); font-weight:700; font-size:2.2rem; color:var(--preto); line-height:1; margin-top:8px; transform:rotate(-3deg); transform-origin:left; }
+
+/* Pedido */
+.ficha { background:#fff; border-radius:22px; padding:20px 18px 22px; box-shadow:0 10px 30px rgba(120,60,10,.14); margin-top:4px; scroll-margin-top:90px; }
+.ficha h2 { font-size:1.7rem; margin-bottom:4px; }
+.ficha > p { color:var(--cinza); margin-bottom:16px; }
+form { display:grid; gap:20px; }
+fieldset { border:0; margin:0; padding:0; min-width:0; }
+legend, label.rot { display:block; font-weight:700; color:var(--preto); margin-bottom:8px; padding:0; }
+label.rot small, legend small { font-weight:500; color:var(--cinza); }
+.opcoes { display:flex; flex-wrap:wrap; gap:8px; }
+.escolha { position:relative; display:inline-flex; align-items:center; min-height:46px; padding:8px 16px; border:2px solid #D9C7B8; border-radius:999px; background:#fff; color:var(--preto); font-weight:600; font-size:.93rem; cursor:pointer; }
+.escolha input { position:absolute; opacity:0; inset:0; margin:0; cursor:pointer; }
+.escolha:has(input:checked) { background:var(--laranja); border-color:var(--preto); font-weight:700; }
+.campo input, .campo select, .campo textarea { width:100%; min-height:52px; padding:13px 16px; border-radius:16px; border:2px solid #D9C7B8; background:var(--fundo); color:var(--preto); font:inherit; }
+.campo textarea { min-height:120px; resize:vertical; }
+.dupla { display:grid; gap:20px; }
+.aceite { display:grid; grid-template-columns:26px 1fr; gap:12px; font-size:.93rem; }
+.aceite input { width:24px; height:24px; accent-color:var(--escuro); margin:2px 0 0; }
+.pote { position:absolute; left:-9999px; }
+.ficha .botao { min-height:58px; font-size:1.05rem; width:100%; background:var(--laranja); color:var(--preto) !important; }
+.ficha .botao:hover { background:var(--preto); color:#fff !important; }
+.aviso-form { border-radius:14px; padding:14px 16px; font-weight:600; display:none; }
+.aviso-form.erro { display:block; border:2px solid #B3261E; color:#8C1D18; }
+.aviso-form.ok { display:block; border:2px solid var(--preto); }
+.aviso-form pre { white-space:pre-wrap; font:inherit; font-weight:500; font-size:.92rem; margin:8px 0 0; }
+.previa { display:none; background:var(--fundo); border-left:5px solid var(--preto); border-radius:10px; padding:12px 14px; font-size:.92rem; margin-bottom:16px; }
+.previa.mostra { display:block; }
+
+.rodape { border-top:1px solid var(--linha); background:#fff; padding:24px 16px 30px; font-size:.9rem; color:var(--cinza); }
+.rodape .dentro { max-width:640px; margin:0 auto; display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+.rodape img { width:54px; height:54px; }
+.rodape a.nome { font-weight:700; color:var(--preto); text-decoration:none; }
+.rodape nav { width:100%; display:flex; gap:20px; }
+
+@media (min-width:560px) { .dupla { grid-template-columns:1fr 1fr; } .feito { flex-basis:300px; } }
+@media (min-width:1000px) {
+  .palco { display:grid; grid-template-columns:320px 1fr; gap:60px; align-items:start; }
+  .lado { display:block; position:sticky; top:96px; padding-top:34px; }
+  .lado figure { margin:0; background:#fff; padding:12px 12px 10px; border-radius:10px; box-shadow:0 22px 50px rgba(120,60,10,.22); transform:rotate(-3deg); position:relative; }
+  .lado figure::before { content:""; position:absolute; top:-14px; left:50%; width:110px; height:30px; margin-left:-55px; background:rgba(242,106,27,.55); transform:rotate(4deg); border-radius:3px; }
+  .lado img { border-radius:6px; }
+  .lado figcaption { font-family:var(--mao); font-weight:700; font-size:1.5rem; line-height:1.05; text-align:center; color:var(--preto); padding:10px 0 4px; }
+  .lado .botao { margin-top:30px; width:100%; min-height:54px; font-size:1rem; }
+  .conversa { margin:0; max-width:620px; }
+  .fileira { margin:0; padding-left:2px; padding-right:2px; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .rapidas a { transition:none; } }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="dentro">
+    <img src="../../assets/fotos/juan-rosto.jpg" alt="" width="46" height="46">
+    <div><b>Juan · JuanIan7</b><small>responde pessoalmente</small></div>
+    <a class="botao" href="#pedido">Pedir proposta</a>
+  </div>
+</header>
+
+<div class="palco">
+  <aside class="lado">
+    <figure>
+      <img src="../../assets/fotos/juan-retrato.jpg" alt="Juan sorrindo, de camiseta branca" width="1040" height="1300">
+      <figcaption>Vamos transformar<br>seu projeto em realidade?</figcaption>
+    </figure>
+    <a class="botao" href="#pedido">Pedir proposta</a>
+  </aside>
+
+  <main class="conversa">
+    <p class="dia">Hoje</p>
+    <p class="msg">Oi, eu sou o Juan.</p>
+    <p class="msg mao">Vamos transformar seu projeto em realidade?</p>
+    <h1 class="msg grande">O que você <span>precisa?</span></h1>
+    <ul class="rapidas">
+      <li><a href="#pedido" data-opcao="Um site"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>Um site</a></li>
+      <li><a href="#pedido" data-opcao="Um aplicativo ou sistema"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18h2"/></svg></span>Um aplicativo ou sistema</a></li>
+      <li><a href="#pedido" data-opcao="Uma planilha inteligente"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 10h18M3 15h18M9 4v16"/></svg></span>Uma planilha inteligente</a></li>
+      <li><a href="#pedido" data-opcao="Controle mensal do meu negócio"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg></span>Controle mensal do negócio</a></li>
+      <li><a href="#pedido" data-opcao="Acompanhar boletins ou publicações com o meu nome"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></span>Achar meu nome em publicações</a></li>
+      <li><a href="#pedido" data-opcao="Outra coisa"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Outra coisa</a></li>
+    </ul>
+
+    <p class="eu">O que você já fez?</p>
+    <p class="msg">Cada um nasceu de um pedido de alguém próximo. Arrasta para o lado:</p>
+    <div class="fileira">
+      <article class="feito"><div class="quadro"><svg viewBox="0 0 400 190" role="img" aria-label="Ilustração de um painel com agenda e caixa">
+              <rect width="400" height="190" fill="#fff"/>
+              <rect width="400" height="30" fill="#141414"/><circle cx="18" cy="15" r="5" fill="#F26A1B"/><rect x="32" y="11" width="70" height="8" rx="4" fill="#fff" opacity=".85"/>
+              <rect x="16" y="46" width="112" height="56" rx="8" fill="#FFF1E7"/><rect x="26" y="56" width="50" height="7" rx="3.5" fill="#C24E0A"/><rect x="26" y="74" width="78" height="14" rx="4" fill="#141414"/>
+              <rect x="144" y="46" width="112" height="56" rx="8" fill="#F6F6F6"/><rect x="154" y="56" width="50" height="7" rx="3.5" fill="#9a9a9a"/><rect x="154" y="74" width="64" height="14" rx="4" fill="#141414"/>
+              <rect x="272" y="46" width="112" height="56" rx="8" fill="#F6F6F6"/><rect x="282" y="56" width="50" height="7" rx="3.5" fill="#9a9a9a"/><rect x="282" y="74" width="84" height="14" rx="4" fill="#141414"/>
+              <g fill="#E3E3E3"><rect x="16" y="118" width="368" height="14" rx="4"/><rect x="16" y="140" width="368" height="14" rx="4"/><rect x="16" y="162" width="368" height="14" rx="4"/></g>
+              <rect x="16" y="140" width="150" height="14" rx="4" fill="#F26A1B"/>
+            </svg></div><div class="txt"><span class="para">feito para a minha esposa</span><h3>Controle de uma clínica veterinária</h3><p>Agenda, estoque, caixa e lucro do mês. 10 telas.</p></div></article>
+      <article class="feito"><div class="quadro"><svg viewBox="0 0 400 190" role="img" aria-label="Ilustração de um sistema com menu lateral e cadastro">
+              <rect width="400" height="190" fill="#fff"/>
+              <rect width="92" height="190" fill="#141414"/><circle cx="24" cy="22" r="9" fill="#F26A1B"/>
+              <g fill="#fff" opacity=".7"><rect x="14" y="48" width="62" height="8" rx="4"/><rect x="14" y="68" width="50" height="8" rx="4"/><rect x="14" y="88" width="58" height="8" rx="4"/><rect x="14" y="108" width="44" height="8" rx="4"/></g>
+              <rect x="8" y="63" width="76" height="18" rx="6" fill="#F26A1B" opacity=".9"/><rect x="14" y="68" width="50" height="8" rx="4" fill="#fff"/>
+              <rect x="110" y="18" width="130" height="14" rx="4" fill="#141414"/>
+              <g fill="#F6F6F6"><rect x="110" y="48" width="274" height="26" rx="6"/><rect x="110" y="82" width="274" height="26" rx="6"/><rect x="110" y="116" width="274" height="26" rx="6"/><rect x="110" y="150" width="274" height="26" rx="6"/></g>
+              <g fill="#9a9a9a"><rect x="122" y="57" width="90" height="8" rx="4"/><rect x="122" y="91" width="120" height="8" rx="4"/><rect x="122" y="125" width="74" height="8" rx="4"/><rect x="122" y="159" width="104" height="8" rx="4"/></g>
+              <g fill="#F26A1B"><rect x="330" y="55" width="42" height="12" rx="6"/><rect x="330" y="123" width="42" height="12" rx="6"/></g>
+            </svg></div><div class="txt"><span class="para">feito para a minha equipe</span><h3>Sistema de gestão para uma equipe</h3><p>Com login para cada pessoa. 125 telas.</p></div></article>
+      <article class="feito"><div class="quadro"><svg viewBox="0 0 400 190" role="img" aria-label="Ilustração de uma busca que destaca um nome em um documento">
+              <rect width="400" height="190" fill="#fff"/>
+              <rect x="16" y="16" width="368" height="34" rx="17" fill="#F6F6F6" stroke="#E3E3E3" stroke-width="2"/><circle cx="38" cy="33" r="7" fill="none" stroke="#141414" stroke-width="2.5"/><rect x="56" y="29" width="120" height="8" rx="4" fill="#141414"/>
+              <g fill="#E3E3E3"><rect x="16" y="68" width="368" height="9" rx="4.5"/><rect x="16" y="86" width="330" height="9" rx="4.5"/><rect x="16" y="122" width="368" height="9" rx="4.5"/><rect x="16" y="140" width="300" height="9" rx="4.5"/><rect x="16" y="158" width="350" height="9" rx="4.5"/></g>
+              <rect x="16" y="102" width="368" height="13" rx="4" fill="#FFF1E7"/><rect x="92" y="102" width="130" height="13" rx="4" fill="#F26A1B"/>
+            </svg></div><div class="txt"><span class="para">feito para mim mesmo</span><h3>Radar de boletins</h3><p>Procura um nome nos boletins e diários oficiais e destaca no PDF.</p></div></article>
+      <article class="feito"><div class="quadro"><svg viewBox="0 0 400 190" role="img" aria-label="Ilustração de uma planilha com totais calculados">
+              <rect width="400" height="190" fill="#fff"/>
+              <rect width="400" height="30" fill="#F6F6F6"/>
+              <g stroke="#E3E3E3" stroke-width="2"><path d="M0 30h400M0 62h400M0 94h400M0 126h400M0 158h400M100 0v190M200 0v190M300 0v190"/></g>
+              <g fill="#9a9a9a"><rect x="14" y="11" width="50" height="8" rx="4"/><rect x="114" y="11" width="40" height="8" rx="4"/><rect x="214" y="11" width="56" height="8" rx="4"/><rect x="314" y="11" width="44" height="8" rx="4"/></g>
+              <g fill="#141414"><rect x="14" y="42" width="66" height="8" rx="4"/><rect x="14" y="74" width="54" height="8" rx="4"/><rect x="14" y="106" width="72" height="8" rx="4"/><rect x="114" y="42" width="34" height="8" rx="4"/><rect x="114" y="74" width="34" height="8" rx="4"/><rect x="114" y="106" width="34" height="8" rx="4"/><rect x="214" y="42" width="44" height="8" rx="4"/><rect x="214" y="74" width="44" height="8" rx="4"/><rect x="214" y="106" width="44" height="8" rx="4"/></g>
+              <rect x="300" y="126" width="100" height="32" fill="#F26A1B"/><rect x="314" y="138" width="60" height="9" rx="4.5" fill="#fff"/>
+              <rect x="300" y="62" width="100" height="32" fill="#FFF1E7"/><rect x="314" y="74" width="48" height="8" rx="4" fill="#C24E0A"/>
+            </svg></div><div class="txt"><span class="para">feito para o trabalho</span><h3>Planilhas que calculam sozinhas</h3><p>Você preenche o básico. A planilha soma, confere e avisa.</p></div></article>
+    </div>
+
+    <p class="eu">E quanto custa?</p>
+    <div class="msg larga">
+      <p>Previsão de valores. O valor fechado vem na proposta, antes de qualquer pagamento.</p>
+      <div class="linhas">
+        <div><span>Criação de site<small>até 8 páginas, pagamento único</small></span><b><small>R$</small> 2.500 <small>a</small> 4.500</b></div>
+        <div><span>Mensalidade do site<small>a cada 2 páginas a mais, R$ 100</small></span><b><small>R$</small> 300 <small>/mês</small></b></div>
+        <div><span>Aplicativo, sistema ou planilha<small>depois de uma conversa</small></span><b>Sob orçamento</b></div>
+      </div>
+      <p class="nota">Domínio e hospedagem ficam fora: você paga direto ao fornecedor, na sua conta e no seu cartão.</p>
+    </div>
+
+    <p class="eu">Como funciona?</p>
+    <div class="msg larga">
+      <ol class="passos">
+        <li><div><b>Você faz o pedido</b> aqui embaixo. Leva uns 3 minutos.</div></li>
+        <li><div><b>Conversamos e eu mando a proposta</b> em PDF, com prazo e valor fechado.</div></li>
+        <li><div><b>Você acompanha por um link de prévia</b> e pede os ajustes.</div></li>
+        <li><div><b>Só vai ao ar com o seu OK.</b></div></li>
+      </ol>
+    </div>
+
+    <p class="eu">E se um dia a gente parar?</p>
+    <div class="msg larga">
+      <p><b>Tudo fica no seu nome.</b> Eu entro como colaborador, por convite, sem a sua senha.</p>
+      <ul class="seus">
+        <li>O endereço do site é registrado por você.</li>
+        <li>A hospedagem é conta sua, no seu cartão.</li>
+        <li>O código fica num projeto em que você também é dono.</li>
+      </ul>
+    </div>
+
+    <p class="eu">E quem é você?</p>
+    <div class="msg foto-msg"><img src="../../assets/fotos/juan-campo.jpg" alt="Juan de boné, ao ar livre, sorrindo" width="1000" height="1125" loading="lazy"></div>
+    <div class="msg larga">
+      <p>Moro no Rio de Janeiro e construo sozinho tudo o que está nesta página.</p>
+      <p style="margin-top:10px">Comecei resolvendo problemas de perto: o controle da clínica da minha esposa, um sistema para a minha equipe, jogos para o meu filho. Os amigos começaram a pedir, e virou serviço.</p>
+      <p style="margin-top:10px">Por isso você não fala com um atendente nem com um robô. Fala comigo.</p>
+      <p class="assina">Juan</p>
+    </div>
+
+    <p class="msg" style="margin-top:14px">Agora é a sua vez. Me conta o seu pedido:</p>
+    <section class="ficha" id="pedido">
+      <h2>Faça o seu pedido</h2>
+      <p>Sem compromisso. Eu respondo pelo contato que você escolher.</p>
+      <p class="previa" id="previa">Prévia do site: o envio ainda não está ligado. Ao tocar em "Enviar pedido", o resumo aparece aqui embaixo e nada é enviado.</p>
+      <form id="form-pedido" novalidate>
+        <fieldset>
+          <legend>O que você precisa?</legend>
+          <div class="opcoes">
+            <label class="escolha"><input type="radio" name="opcao" value="Um site" required>Um site</label>
+            <label class="escolha"><input type="radio" name="opcao" value="Um aplicativo ou sistema">Um aplicativo ou sistema</label>
+            <label class="escolha"><input type="radio" name="opcao" value="Uma planilha inteligente">Uma planilha inteligente</label>
+            <label class="escolha"><input type="radio" name="opcao" value="Controle mensal do meu negócio">Controle mensal do negócio</label>
+            <label class="escolha"><input type="radio" name="opcao" value="Acompanhar boletins ou publicações com o meu nome">Achar meu nome em publicações</label>
+            <label class="escolha"><input type="radio" name="opcao" value="Outra coisa">Outra coisa</label>
+          </div>
+        </fieldset>
+
+        <div class="campo">
+          <label class="rot" for="descricao">Conte com as suas palavras <small>(o que o negócio faz e o que você quer resolver)</small></label>
+          <textarea id="descricao" name="descricao" required maxlength="2000" placeholder="Ex.: tenho uma barbearia e quero que o cliente marque horário pelo celular."></textarea>
+        </div>
+
+        <div class="dupla">
+          <div class="campo">
+            <label class="rot" for="nome">Seu nome</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required maxlength="120">
+          </div>
+          <div class="campo">
+            <label class="rot" for="whatsapp">WhatsApp <small>(com DDD)</small></label>
+            <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="(21) 90000-0000">
+          </div>
+        </div>
+
+        <div class="dupla">
+          <div class="campo">
+            <label class="rot" for="cidade">Cidade</label>
+            <input id="cidade" name="cidade" type="text" autocomplete="address-level2" maxlength="80">
+          </div>
+          <div class="campo">
+            <label class="rot" for="prazo">Para quando?</label>
+            <select id="prazo" name="prazo">
+              <option value="Sem pressa">Sem pressa</option>
+              <option value="Em até 1 mês">Em até 1 mês</option>
+              <option value="Em 2 a 3 meses">Em 2 a 3 meses</option>
+              <option value="Tenho uma data">Tenho uma data (conto na descrição)</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset>
+          <legend>Já tem site ou endereço (domínio)?</legend>
+          <div class="opcoes tres">
+            <label class="escolha"><input type="radio" name="ja_tem" value="Não tenho" checked>Não tenho</label>
+            <label class="escolha"><input type="radio" name="ja_tem" value="Tenho só o endereço">Só o endereço</label>
+            <label class="escolha"><input type="radio" name="ja_tem" value="Tenho um site">Tenho um site</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Quanto pensa em investir? <small>(só para eu propor algo do tamanho certo)</small></legend>
+          <div class="opcoes">
+            <label class="escolha"><input type="radio" name="investimento" value="Até R$ 1.000">Até R$ 1.000</label>
+            <label class="escolha"><input type="radio" name="investimento" value="R$ 1.000 a 2.500">R$ 1.000 a 2.500</label>
+            <label class="escolha"><input type="radio" name="investimento" value="R$ 2.500 a 4.500">R$ 2.500 a 4.500</label>
+            <label class="escolha"><input type="radio" name="investimento" value="Acima de R$ 4.500">Acima de R$ 4.500</label>
+            <label class="escolha"><input type="radio" name="investimento" value="Ainda não sei" checked>Ainda não sei</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Como prefere que eu responda?</legend>
+          <div class="opcoes tres">
+            <label class="escolha"><input type="radio" name="atendimento" value="Mensagem no WhatsApp" checked>Mensagem no WhatsApp</label>
+            <label class="escolha"><input type="radio" name="atendimento" value="Ligação">Ligação</label>
+            <label class="escolha"><input type="radio" name="atendimento" value="Chamada de vídeo">Chamada de vídeo</label>
+          </div>
+        </fieldset>
+
+        <label class="pote" aria-hidden="true">Deixe este campo vazio<input type="text" name="site_da_empresa" tabindex="-1" autocomplete="off"></label>
+
+        <label class="aceite">
+          <input type="checkbox" name="aceite" required>
+          <span>Autorizo o uso destes dados só para responder a este pedido, como explica a <a href="../../privacidade/">política de privacidade</a>.</span>
+        </label>
+
+        <div class="aviso-form" id="aviso" role="status" aria-live="polite"></div>
+        <button class="botao" type="submit" id="enviar">Enviar pedido</button>
+      </form>
+    </section>
+  </main>
+</div>
+
+<footer class="rodape">
+  <div class="dentro">
+    <img src="../../assets/logo-juanian7.png" alt="Logo JuanIan7" width="54" height="54">
+    <div><a class="nome" href="https://github.com/JuanIan7" rel="author">Desenvolvido por JuanIan7</a><br>© 2026 Juan Carlos Silva de Araujo. Todos os direitos reservados.</div>
+    <nav><a href="../../comecar/">Primeiros passos</a><a href="../../privacidade/">Privacidade</a></nav>
+  </div>
+</footer>
+
+<script src="../../assets/config.js"></script>
+<script src="../../assets/app.js"></script>
+</body>
+</html>
