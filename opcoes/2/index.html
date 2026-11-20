@@ -29,7 +29,9 @@ p { margin:0; }
 .topo img { width:46px; height:46px; border-radius:50%; object-fit:cover; border:2px solid var(--laranja); }
 .topo b { display:block; font-family:var(--titulo); font-size:1.08rem; color:var(--preto); line-height:1.1; }
 .topo small { color:var(--cinza); font-size:.85rem; white-space:nowrap; }
-.topo .botao { white-space:nowrap; }
+.topo .botao { white-space:nowrap; padding:0 14px; font-size:.88rem; min-height:42px; }
+.topo .dentro > div { min-width:0; }
+@media (max-width:420px) { .topo small { font-size:.78rem; } .topo img { width:40px; height:40px; } }
 .topo b { white-space:nowrap; }
 .topo small::before { content:""; display:inline-block; width:8px; height:8px; border-radius:50%; background:#2E9E4F; margin-right:6px; }
 .topo .botao { margin-left:auto; }
