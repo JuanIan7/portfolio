@@ -151,6 +151,13 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
 .guia-sub { color:var(--cinza); font-size:.9rem; margin:6px 0 16px; }
 .guia-lista { display:grid; gap:18px; }
 .guia .escolha { background:#fff; }
+.guia-ia { margin-top:20px; padding-top:18px; border-top:2px dashed #E9B48F; display:grid; gap:10px; }
+.botao-ia { justify-self:start; min-height:52px; padding:0 22px; border:2px solid var(--preto); border-radius:999px; background:var(--preto); color:#fff; font:inherit; font-weight:700; cursor:pointer; }
+.botao-ia:hover { background:var(--escuro); border-color:var(--escuro); }
+.botao-ia:disabled { opacity:.65; cursor:progress; }
+.guia-ia-nota { color:var(--cinza); font-size:.88rem; margin:0; max-width:62ch; }
+.guia-ia-rot { font-weight:700; color:var(--preto); margin:6px 0 -4px; padding-top:16px; border-top:2px dashed #E9B48F; }
+.guia-ia-rot span { display:inline-block; font-weight:600; font-size:.78rem; color:var(--escuro); background:#fff; border:1.5px solid #E9B48F; border-radius:999px; padding:2px 10px; margin-left:4px; vertical-align:middle; }
 .guia .escolha:has(input:checked) { background:var(--laranja); }
 .dupla { display:grid; gap:22px; }
 .aceite { display:grid; grid-template-columns:26px 1fr; gap:12px; font-size:.94rem; }
@@ -331,6 +338,10 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
           <p class="guia-titulo">Só mais umas perguntas rápidas</p>
           <p class="guia-sub">Responder é opcional. Ajuda a proposta a sair certa de primeira.</p>
           <div class="guia-lista" id="guia-lista"></div>
+          <div class="guia-ia" id="guia-ia" hidden>
+            <button type="button" class="botao-ia" id="pedir-ia">Ver perguntas para o meu caso</button>
+            <p class="guia-ia-nota" id="guia-ia-nota" role="status" aria-live="polite">Uma inteligência artificial do Google lê o tipo de pedido e o que você contou acima para sugerir as perguntas. Por isso, não coloque dados pessoais na descrição.</p>
+          </div>
         </div>
 
         <div class="dupla">
@@ -412,7 +423,7 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
   </div>
 </footer>
 
-<script src="assets/config.js"></script>
-<script src="assets/app.js?v=5"></script>
+<script src="assets/config.js?v=6"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>

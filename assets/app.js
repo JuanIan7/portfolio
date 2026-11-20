@@ -186,6 +186,7 @@
   var respostas = {};      // id da pergunta -> resposta (fica guardada se a pergunta sumir e voltar)
   var guiaAtual = "";
   var MAX_PERGUNTAS = 6;
+  var perguntasIA = [];    // perguntas sugeridas pela IA para este pedido (entram depois das fixas)
 
   var BANCO = {
     "Um site": [
@@ -251,6 +252,7 @@
     var base = BANCO[opcaoMarcada()];
     if (!base) return [];
     var lista = base.slice();
+    if (perguntasIA.length) return lista.concat(perguntasIA);   // a IA já olhou a descrição: dispensa as extras por palavra
     var texto = descricao.value;
     for (var i = 0; i < EXTRAS.length && lista.length < MAX_PERGUNTAS; i++) {
       if (EXTRAS[i].re.test(texto)) lista.push(EXTRAS[i].q);
@@ -311,8 +313,93 @@
     guiaAtual = chave;
     guiaLista.textContent = "";
     guia.hidden = lista.length === 0;
-    lista.forEach(function (q) { guiaLista.appendChild(desenharPergunta(q)); });
+    var marcouIA = false;
+    lista.forEach(function (q) {
+      if (q.ia && !marcouIA) {
+        marcouIA = true;
+        var div = document.createElement("p");
+        div.className = "guia-ia-rot"; div.id = "guia-ia-rot";
+        div.textContent = "Perguntas para o seu caso ";
+        var selo = document.createElement("span");
+        selo.textContent = cfg.endpoint ? "sugeridas por IA" : "exemplo: a IA ainda não está ligada";
+        div.appendChild(selo);
+        guiaLista.appendChild(div);
+      }
+      guiaLista.appendChild(desenharPergunta(q));
+    });
+    if (caixaIA) caixaIA.hidden = !cfg.ia || lista.length === 0;
   }
+
+  // --- IA: lê o tipo de pedido e a descrição e sugere as perguntas que faltam --------------
+  var caixaIA = document.getElementById("guia-ia");
+  var botaoIA = document.getElementById("pedir-ia");
+  var notaIA = document.getElementById("guia-ia-nota");
+  var NOTA_IA = notaIA ? notaIA.textContent : "";
+  var usosIA = 0, MAX_USOS_IA = 3;
+
+  function validarPerguntasIA(lista) {
+    if (!Array.isArray(lista)) return [];
+    var boas = [];
+    lista.slice(0, 4).forEach(function (q, i) {
+      if (!q || typeof q.p !== "string") return;
+      var p = limpar(q.p, 160);
+      if (p.length < 8) return;
+      var ops = Array.isArray(q.ops) ? q.ops.map(function (o) { return limpar(o, 48); }).filter(Boolean).slice(0, 5) : [];
+      boas.push({ id: "ia_" + usosIA + "_" + i, p: p, tipo: q.tipo === "uma" && ops.length >= 2 ? "uma" : "texto", ops: ops, ia: true });
+    });
+    return boas;
+  }
+
+  function exemploIA() {
+    // Só na prévia local (sem endereço de envio): mostra como a tela fica, com perguntas de exemplo.
+    return new Promise(function (ok) {
+      setTimeout(function () {
+        ok({ ok: true, perguntas: [
+          { p: "Quantos clientes você atende por dia, mais ou menos?", tipo: "uma", ops: ["Até 10", "11 a 30", "Mais de 30"] },
+          { p: "O cliente precisa receber um lembrete antes do horário?", tipo: "uma", ops: ["Sim, pelo WhatsApp", "Não precisa", "Não sei"] },
+          { p: "Tem algo que hoje dá mais dor de cabeça nesse processo?", tipo: "texto", ops: [] }
+        ] });
+      }, 900);
+    });
+  }
+
+  function pedirIA() {
+    var opcao = opcaoMarcada();
+    var texto = limpar(descricao.value, 1200);
+    if (!opcao || texto.length < 20) {
+      notaIA.textContent = "Antes, conte um pouco mais na caixa \"Conte com as suas palavras\" (escrevendo ou falando).";
+      descricao.focus();
+      return;
+    }
+    if (usosIA >= MAX_USOS_IA) { notaIA.textContent = "As perguntas já foram atualizadas algumas vezes. Pode enviar o pedido assim."; return; }
+    usosIA++;
+    botaoIA.disabled = true;
+    botaoIA.textContent = "Pensando nas perguntas...";
+    var corpo = {
+      acao: "perguntas", opcao: opcao, descricao: texto,
+      ja: (BANCO[opcao] || []).map(function (q) { return q.p; }),
+      site_da_empresa: limpar(new FormData(form).get("site_da_empresa"), 100),
+      segundos: Math.round((Date.now() - abertoEm) / 1000)
+    };
+    var chamada = cfg.endpoint
+      ? fetch(cfg.endpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(corpo) }).then(function (r) { return r.json(); })
+      : exemploIA();
+    chamada.then(function (r) {
+      var novas = r && r.ok ? validarPerguntasIA(r.perguntas) : [];
+      if (!novas.length) throw new Error("sem perguntas");
+      perguntasIA = novas;
+      montarGuia();
+      notaIA.textContent = NOTA_IA;
+      var rot = document.getElementById("guia-ia-rot");
+      if (rot) rot.scrollIntoView({ block: "center", behavior: "smooth" });
+    }).catch(function () {
+      notaIA.textContent = "Não consegui pensar em perguntas agora. Pode enviar o pedido assim mesmo; eu pergunto o resto depois.";
+    }).then(function () {
+      botaoIA.disabled = false;
+      botaoIA.textContent = perguntasIA.length ? "Atualizar as perguntas" : "Ver perguntas para o meu caso";
+    });
+  }
+  if (botaoIA) botaoIA.addEventListener("click", pedirIA);
 
   function respostasDadas() {
     var saida = [];
@@ -320,16 +407,22 @@
       var r = limpar(respostas[q.id], 300);
       if (r) saida.push({ p: limpar(q.p, 160), r: r });
     });
-    return saida.slice(0, 8);
+    return saida.slice(0, 10);
   }
 
-  form.querySelectorAll('input[name="opcao"]').forEach(function (r) { r.addEventListener("change", montarGuia); });
+  form.querySelectorAll('input[name="opcao"]').forEach(function (r) {
+    r.addEventListener("change", function () {
+      perguntasIA = [];      // as perguntas da IA eram para o outro tipo de pedido
+      if (botaoIA) botaoIA.textContent = "Ver perguntas para o meu caso";
+      montarGuia();
+    });
+  });
   if (descricao) {
     descricao.addEventListener("blur", montarGuia);
     var espera;
     descricao.addEventListener("input", function () { clearTimeout(espera); espera = setTimeout(montarGuia, 900); });
   }
-  form.addEventListener("reset", function () { respostas = {}; guiaAtual = ""; setTimeout(montarGuia, 0); });
+  form.addEventListener("reset", function () { respostas = {}; perguntasIA = []; guiaAtual = ""; setTimeout(montarGuia, 0); });
   montarGuia();
 
   // ---------------------------------------------------------------------------

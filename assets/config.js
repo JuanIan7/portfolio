@@ -1,7 +1,4 @@
-// Configuração do portfólio. É o único arquivo que muda para ligar o formulário.
-// endpoint: endereço do Apps Script (termina em /exec) que grava o pedido na planilha e avisa o Juan por e-mail.
-//           Vazio = modo de prévia: o formulário mostra o resumo na tela e não envia nada.
-// Não colocar aqui e-mail, telefone, senha ou chave: este arquivo é público.
-window.PORTFOLIO = {
-  endpoint: ""
-};
+// Configuração do portfólio. Não entra senha nem chave aqui: este arquivo é público.
+// endpoint: endereço do Apps Script que termina em /exec (vazio = modo de prévia, nada é enviado).
+// ia: true mostra o botão "Ver perguntas para o meu caso". A chave da IA fica só no Apps Script.
+window.PORTFOLIO = { endpoint: "", ia: true };
