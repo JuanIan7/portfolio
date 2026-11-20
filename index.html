@@ -132,6 +132,26 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
 /* Campos de ficha de papel: só a linha de baixo */
 .campo input, .campo select, .campo textarea { width:100%; min-height:50px; padding:10px 4px; border:0; border-bottom:2px solid var(--preto); border-radius:0; background:transparent; color:var(--preto); font:inherit; font-size:1.05rem; }
 .campo textarea { min-height:120px; resize:vertical; border:2px dashed #D9C7B8; border-radius:12px; padding:12px 14px; background:var(--papel); }
+[hidden] { display:none !important; }
+/* Falar em vez de digitar */
+.falar { display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin-top:12px; }
+.microfone { display:inline-flex; align-items:center; gap:10px; min-height:54px; padding:0 22px 0 10px; border:2px solid var(--preto); border-radius:999px; background:#fff; color:var(--preto); font:inherit; font-weight:700; cursor:pointer; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; }
+.microfone .bola { width:36px; height:36px; border-radius:50%; background:var(--laranja); display:grid; place-items:center; flex:none; }
+.microfone[aria-pressed="true"] { background:var(--preto); color:#fff; }
+.microfone[aria-pressed="true"] .bola { background:#fff; animation:pulso 1.1s ease-in-out infinite; }
+@keyframes pulso { 50% { box-shadow:0 0 0 9px rgba(242,106,27,.55); } }
+@media (prefers-reduced-motion:reduce) { .microfone[aria-pressed="true"] .bola { animation:none; box-shadow:0 0 0 5px rgba(242,106,27,.7); } }
+.falar-dica { color:var(--cinza); font-size:.9rem; margin:0; flex:1 1 220px; }
+.campo > .falar-dica { margin-top:10px; }
+.ouvindo { flex:1 1 100%; margin:0; background:var(--claro); border-left:5px solid var(--laranja); border-radius:10px; padding:12px 14px; color:var(--preto); min-height:48px; }
+.ouvindo .parcial { color:var(--cinza); }
+/* Perguntas rápidas: um bilhete dentro da ficha */
+.guia { background:var(--claro); border:2px dashed #E9B48F; border-radius:14px; padding:18px 16px 20px; }
+.guia-titulo { font-family:var(--mao); font-weight:700; font-size:1.8rem; line-height:1; color:var(--escuro); margin:0; }
+.guia-sub { color:var(--cinza); font-size:.9rem; margin:6px 0 16px; }
+.guia-lista { display:grid; gap:18px; }
+.guia .escolha { background:#fff; }
+.guia .escolha:has(input:checked) { background:var(--laranja); }
 .dupla { display:grid; gap:22px; }
 .aceite { display:grid; grid-template-columns:26px 1fr; gap:12px; font-size:.94rem; }
 .aceite input { width:24px; height:24px; accent-color:var(--escuro); margin:2px 0 0; }
@@ -288,6 +308,7 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
             <label class="escolha"><input type="radio" name="opcao" value="Uma planilha inteligente">Uma planilha inteligente</label>
             <label class="escolha"><input type="radio" name="opcao" value="Controle mensal do meu negócio">Controle mensal do negócio</label>
             <label class="escolha"><input type="radio" name="opcao" value="Acompanhar boletins ou publicações com o meu nome">Achar meu nome em publicações</label>
+            <label class="escolha"><input type="radio" name="opcao" value="Mudar algo em um projeto que já tenho com você">Mudar algo no meu projeto</label>
             <label class="escolha"><input type="radio" name="opcao" value="Outra coisa">Outra coisa</label>
           </div>
         </fieldset>
@@ -295,6 +316,21 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
         <div class="campo">
           <label class="rot" for="descricao">Conte com as suas palavras <small>(o que o negócio faz e o que você quer resolver)</small></label>
           <textarea id="descricao" name="descricao" required maxlength="2000" placeholder="Ex.: tenho uma barbearia e quero que o cliente marque horário pelo celular."></textarea>
+          <div class="falar" id="falar" hidden>
+            <button type="button" class="microfone" id="microfone" aria-pressed="false" aria-describedby="falar-dica">
+              <span class="bola" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+              <span id="microfone-rot">Segure para falar</span>
+            </button>
+            <p class="falar-dica" id="falar-dica" role="status" aria-live="polite"></p>
+            <p class="ouvindo" id="ouvindo" aria-live="polite" hidden></p>
+          </div>
+          <p class="falar-dica" id="falar-sem" hidden>Prefere falar? Neste navegador o botão de falar não funciona; no celular, use o microfone do teclado.</p>
+        </div>
+
+        <div class="guia" id="guia" hidden>
+          <p class="guia-titulo">Só mais umas perguntas rápidas</p>
+          <p class="guia-sub">Responder é opcional. Ajuda a proposta a sair certa de primeira.</p>
+          <div class="guia-lista" id="guia-lista"></div>
         </div>
 
         <div class="dupla">
@@ -377,6 +413,6 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
 </footer>
 
 <script src="assets/config.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=5"></script>
 </body>
 </html>
