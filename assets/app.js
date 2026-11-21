@@ -186,6 +186,7 @@
   var respostas = {};      // id da pergunta -> resposta (fica guardada se a pergunta sumir e voltar)
   var guiaAtual = "";
   var MAX_PERGUNTAS = 6;
+  var PERGUNTAS_DO_FORMULARIO = ["Para quando? (prazo)", "Já tem site ou endereço (domínio)?", "Quanto pensa em investir?", "Em que cidade?"];
   var perguntasIA = [];    // perguntas sugeridas pela IA para este pedido (entram depois das fixas)
 
   var BANCO = {
@@ -377,7 +378,8 @@
     botaoIA.textContent = "Pensando nas perguntas...";
     var corpo = {
       acao: "perguntas", opcao: opcao, descricao: texto,
-      ja: (BANCO[opcao] || []).map(function (q) { return q.p; }),
+      // Tudo o que o formulário já pergunta, para a IA não repetir (prazo, domínio, investimento etc.).
+      ja: (BANCO[opcao] || []).map(function (q) { return q.p; }).concat(PERGUNTAS_DO_FORMULARIO).slice(0, 8),
       site_da_empresa: limpar(new FormData(form).get("site_da_empresa"), 100),
       segundos: Math.round((Date.now() - abertoEm) / 1000)
     };
