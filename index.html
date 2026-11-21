@@ -151,7 +151,9 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
 .guia-sub { color:var(--cinza); font-size:.9rem; margin:6px 0 16px; }
 .guia-lista { display:grid; gap:18px; }
 .guia .escolha { background:#fff; }
-.guia-ia { margin-top:20px; padding-top:18px; border-top:2px dashed #E9B48F; display:grid; gap:10px; }
+.guia-ia { display:grid; gap:10px; background:#fff; border:2px solid var(--laranja); border-radius:14px; padding:16px; box-shadow:0 8px 20px rgba(242,106,27,.12); }
+.guia-ia-titulo { margin:0; font-weight:700; color:var(--preto); display:flex; align-items:center; gap:8px; }
+.selo-ia { display:inline-grid; place-items:center; min-width:30px; height:24px; padding:0 6px; border-radius:6px; background:var(--preto); color:#fff; font-size:.78rem; font-weight:700; letter-spacing:.04em; }
 .botao-ia { justify-self:start; min-height:52px; padding:0 22px; border:2px solid var(--preto); border-radius:999px; background:var(--preto); color:#fff; font:inherit; font-weight:700; cursor:pointer; }
 .botao-ia:hover { background:var(--escuro); border-color:var(--escuro); }
 .botao-ia:disabled { opacity:.65; cursor:progress; }
@@ -334,14 +336,16 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
           <p class="falar-dica" id="falar-sem" hidden>Prefere falar? Neste navegador o botão de falar não funciona; no celular, use o microfone do teclado.</p>
         </div>
 
+        <div class="guia-ia" id="guia-ia" hidden>
+          <p class="guia-ia-titulo"><span class="selo-ia" aria-hidden="true">IA</span> Quer ajuda para detalhar o pedido?</p>
+          <p class="guia-ia-nota" id="guia-ia-nota" role="status" aria-live="polite">Depois de contar o que precisa, toque no botão: uma inteligência artificial do Google lê o tipo de pedido e o que você contou e sugere perguntas para o seu caso. Não coloque dados pessoais na descrição.</p>
+          <button type="button" class="botao-ia" id="pedir-ia">Ver perguntas para o meu caso</button>
+        </div>
+
         <div class="guia" id="guia" hidden>
           <p class="guia-titulo">Só mais umas perguntas rápidas</p>
           <p class="guia-sub">Responder é opcional. Ajuda a proposta a sair certa de primeira.</p>
           <div class="guia-lista" id="guia-lista"></div>
-          <div class="guia-ia" id="guia-ia" hidden>
-            <button type="button" class="botao-ia" id="pedir-ia">Ver perguntas para o meu caso</button>
-            <p class="guia-ia-nota" id="guia-ia-nota" role="status" aria-live="polite">Uma inteligência artificial do Google lê o tipo de pedido e o que você contou acima para sugerir as perguntas. Por isso, não coloque dados pessoais na descrição.</p>
-          </div>
         </div>
 
         <div class="dupla">
@@ -424,6 +428,6 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
 </footer>
 
 <script src="assets/config.js?v=7"></script>
-<script src="assets/app.js?v=9"></script>
+<script src="assets/app.js?v=12"></script>
 </body>
 </html>
