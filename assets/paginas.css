@@ -1,0 +1,76 @@
+/* Páginas internas do portfólio (primeiros passos, privacidade, Claudia), no mesmo estilo mural da página principal.
+   Desenvolvido por JuanIan7 (https://github.com/JuanIan7). © 2026 Juan Carlos Silva de Araujo. Todos os direitos reservados. */
+:root { --laranja:#F26A1B; --escuro:#C24E0A; --claro:#FFF1E7; --preto:#141414; --texto:#2B2B2B; --cinza:#5C5C5C; --papel:#FFFDFA; --linha:#EADFD6;
+  --titulo:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif; --corpo:"Instrument Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif; --mao:"Caveat","Bradley Hand",cursive;
+  --sombra:0 14px 34px rgba(120,60,10,.16); }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body { margin:0; color:var(--texto); font-family:var(--corpo); font-size:17px; line-height:1.55;
+  background:var(--papel) radial-gradient(circle, #E6D6C8 1.3px, transparent 1.6px) 0 0 / 26px 26px; }
+img, svg, video { max-width:100%; height:auto; display:block; }
+a { color:var(--escuro); }
+a:focus-visible, button:focus-visible { outline:3px solid var(--preto); outline-offset:3px; }
+h1, h2, h3 { font-family:var(--titulo); color:var(--preto); margin:0; letter-spacing:-.02em; line-height:1.08; }
+p { margin:0; }
+.dentro { max-width:1080px; margin:0 auto; padding:0 20px; }
+.estreito { max-width:780px; margin:0 auto; }
+.fita { position:relative; }
+.fita::before { content:""; position:absolute; top:-13px; left:50%; width:104px; height:28px; margin-left:-52px; background:rgba(242,106,27,.55); transform:rotate(-3deg); border-radius:3px; z-index:2; }
+.botao { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; border-radius:999px; background:var(--preto); color:#fff !important; font-weight:700; text-decoration:none; border:0; cursor:pointer; font-family:var(--corpo); font-size:.98rem; text-align:center; }
+.botao:hover { background:var(--escuro); }
+.botao.laranja { background:var(--laranja); color:var(--preto) !important; }
+.botao.laranja:hover { background:var(--preto); color:#fff !important; }
+
+/* Topo */
+.topo .dentro { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:14px; padding-bottom:6px; }
+.marca { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--preto); font-family:var(--titulo); font-weight:700; font-size:1.15rem; }
+.marca img { width:44px; height:44px; }
+.topo .botao { white-space:nowrap; padding:0 18px; }
+
+/* Abertura da página: título e uma linha escrita à mão */
+.cabeca { padding:34px 0 8px; }
+.cabeca h1 { font-size:clamp(2.2rem, 8vw, 3.4rem); }
+.cabeca .mao { display:block; font-family:var(--mao); font-weight:700; font-size:1.7rem; color:var(--escuro); line-height:1.05; margin-top:8px; }
+.cabeca .lide { margin-top:14px; max-width:60ch; color:var(--texto); }
+.selo { display:inline-block; font-weight:700; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; background:var(--preto); color:#fff; border-radius:6px; padding:4px 10px; margin-bottom:12px; }
+
+/* Folha de texto: papel branco preso com fita */
+.folha { background:#fff; border-radius:8px; box-shadow:var(--sombra); padding:34px 22px 28px; margin:34px 0 10px; }
+.folha h2 { font-size:clamp(1.35rem, 4.6vw, 1.7rem); margin:30px 0 10px; padding-top:22px; border-top:2px dashed var(--linha); }
+.folha h2:first-of-type { margin-top:6px; padding-top:0; border-top:0; }
+.folha p + p { margin-top:10px; }
+.folha ul { list-style:none; margin:12px 0 14px; padding:0; display:grid; gap:10px; }
+.folha li { padding-left:28px; position:relative; }
+.folha li::before { content:""; position:absolute; left:3px; top:.5em; width:12px; height:6px; border-left:3px solid var(--escuro); border-bottom:3px solid var(--escuro); transform:rotate(-45deg); }
+.folha li b { color:var(--preto); }
+.data { font-family:var(--mao); font-weight:700; font-size:1.35rem; color:var(--escuro); }
+.aviso { margin-top:18px; background:var(--claro); border-left:5px solid var(--laranja); border-radius:10px; padding:12px 14px; font-weight:600; color:var(--preto); }
+
+/* Vídeos: cada um num cartão tipo polaroide */
+.videos { display:grid; gap:44px; margin:40px 0 10px; }
+.video { background:#fff; border-radius:8px; box-shadow:var(--sombra); padding:14px 14px 20px; }
+.video:nth-child(odd) { transform:rotate(-.8deg); } .video:nth-child(even) { transform:rotate(.8deg); }
+.video video { width:100%; border-radius:6px; background:#000; aspect-ratio:16/9; }
+.video .num { font-family:var(--mao); font-weight:700; font-size:1.6rem; color:var(--escuro); display:block; margin:16px 4px 2px; line-height:1; }
+.video h2 { font-size:1.4rem; margin:0 4px; }
+.video p { color:var(--cinza); margin:8px 4px 0; }
+.video .acoes { margin:16px 4px 0; }
+
+/* Bilhete de transparência */
+.bilhete { background:#FFE9D6; border-radius:4px 18px 18px 18px; box-shadow:var(--sombra); padding:24px 22px 20px; margin:44px 0 10px; transform:rotate(-1deg); }
+.bilhete h3 { font-family:var(--mao); font-size:1.9rem; color:var(--escuro); letter-spacing:0; margin-bottom:8px; }
+.bilhete p + p { margin-top:8px; }
+
+/* Rodapé (igual ao da página principal) */
+.rodape { margin-top:56px; background:#fff; border-top:1px solid var(--linha); padding:26px 0 32px; font-size:.9rem; color:var(--cinza); }
+.rodape .dentro { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+.rodape img { width:56px; height:56px; }
+.rodape a.nome { font-weight:700; color:var(--preto); text-decoration:none; }
+.rodape nav { width:100%; display:flex; flex-wrap:wrap; gap:8px 20px; }
+
+@media (min-width:760px) {
+  .folha { padding:44px 48px 38px; transform:rotate(-.35deg); }
+  .videos { grid-template-columns:1fr 1fr; gap:36px; }
+  .rodape nav { width:auto; margin-left:auto; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
