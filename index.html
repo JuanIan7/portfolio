@@ -130,6 +130,10 @@ fieldset { border:0; margin:0; padding:0; min-width:0; }
 legend, label.rot { display:block; font-weight:700; color:var(--preto); margin-bottom:8px; padding:0; }
 label.rot small, legend small { font-weight:500; color:var(--cinza); }
 .opcoes { display:flex; flex-wrap:wrap; gap:8px; }
+.sub-assin { margin-top:14px; padding:12px 14px; border-left:4px solid var(--laranja); background:var(--papel); border-radius:0 12px 12px 0; }
+.sub-assin[hidden], #sub-ia-outra[hidden] { display:none; }
+.sub-assin > .rot { margin:0 0 10px; font-weight:700; }
+.sub-assin .campo { margin-top:12px; }
 .escolha { position:relative; display:inline-flex; align-items:center; min-height:46px; padding:8px 16px; border:2px solid #D9C7B8; border-radius:12px; background:var(--papel); color:var(--preto); font-weight:600; font-size:.94rem; cursor:pointer; }
 .escolha input { position:absolute; opacity:0; inset:0; margin:0; cursor:pointer; }
 .escolha:has(input:checked) { background:var(--laranja); border-color:var(--preto); font-weight:700; transform:rotate(-1deg); }
@@ -389,6 +393,58 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
         </fieldset>
 
         <fieldset>
+          <legend>Qual celular você usa?</legend>
+          <div class="opcoes tres">
+            <label class="escolha"><input type="radio" name="celular" value="Android">Android</label>
+            <label class="escolha"><input type="radio" name="celular" value="iPhone (iOS)">iPhone (iOS)</label>
+            <label class="escolha"><input type="radio" name="celular" value="Não sei ou outro" checked>Não sei ou outro</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Usa serviços do Google com frequência? <small>(Gmail, Drive, Agenda, Planilhas)</small></legend>
+          <div class="opcoes tres">
+            <label class="escolha"><input type="radio" name="google" value="Uso bastante">Uso bastante</label>
+            <label class="escolha"><input type="radio" name="google" value="Uso pouco">Uso pouco</label>
+            <label class="escolha"><input type="radio" name="google" value="Quase não uso" checked>Quase não uso</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Tem alguma assinatura ativa? <small>(opcional; ajuda a aproveitar o que você já paga)</small></legend>
+          <div class="opcoes">
+            <label class="escolha"><input type="checkbox" name="assinatura" value="Google (Google One, Workspace)">Google (One, Workspace)</label>
+            <label class="escolha"><input type="checkbox" name="assinatura" value="IA">Inteligência artificial (IA)</label>
+            <label class="escolha"><input type="checkbox" name="assinatura" value="Microsoft 365">Microsoft 365</label>
+            <label class="escolha"><input type="checkbox" name="assinatura" value="Apple (iCloud)">Apple (iCloud)</label>
+            <label class="escolha"><input type="checkbox" name="assinatura" value="Hospedagem ou domínio">Hospedagem ou domínio</label>
+            <label class="escolha"><input type="checkbox" name="assinatura" value="Outra">Outra</label>
+            <label class="escolha"><input type="checkbox" name="assinatura" value="Nenhuma">Nenhuma</label>
+          </div>
+          <div class="sub-assin" id="sub-ia" hidden>
+            <p class="rot">Qual IA você assina? <small>(pode marcar mais de uma)</small></p>
+            <div class="opcoes">
+              <label class="escolha"><input type="checkbox" name="assinatura_ia" value="ChatGPT">ChatGPT</label>
+              <label class="escolha"><input type="checkbox" name="assinatura_ia" value="Gemini">Gemini</label>
+              <label class="escolha"><input type="checkbox" name="assinatura_ia" value="Claude">Claude</label>
+              <label class="escolha"><input type="checkbox" name="assinatura_ia" value="DeepSeek">DeepSeek</label>
+              <label class="escolha"><input type="checkbox" name="assinatura_ia" value="Copilot">Copilot</label>
+              <label class="escolha"><input type="checkbox" name="assinatura_ia" value="Grok">Grok</label>
+              <label class="escolha"><input type="checkbox" name="assinatura_ia" value="Perplexity">Perplexity</label>
+              <label class="escolha"><input type="checkbox" name="assinatura_ia" value="Outra IA">Outra</label>
+            </div>
+            <div class="campo" id="sub-ia-outra" hidden>
+              <label class="rot" for="ia_outra">Qual outra IA?</label>
+              <input id="ia_outra" name="ia_outra" type="text" maxlength="60" autocomplete="off">
+            </div>
+          </div>
+          <div class="campo sub-assin" id="sub-outra" hidden>
+            <label class="rot" for="assin_outra">Qual outra assinatura?</label>
+            <input id="assin_outra" name="assin_outra" type="text" maxlength="60" autocomplete="off" placeholder="Ex.: Canva, Adobe, plano de hospedagem">
+          </div>
+        </fieldset>
+
+        <fieldset>
           <legend>Quanto pensa em investir? <small>(só para eu propor algo do tamanho certo)</small></legend>
           <div class="opcoes">
             <label class="escolha"><input type="radio" name="investimento" value="Até R$ 1.000">Até R$ 1.000</label>
@@ -432,6 +488,6 @@ label.rot small, legend small { font-weight:500; color:var(--cinza); }
 </footer>
 
 <script src="assets/config.js?v=7"></script>
-<script src="assets/app.js?v=12"></script>
+<script src="assets/app.js?v=14"></script>
 </body>
 </html>

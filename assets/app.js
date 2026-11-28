@@ -186,7 +186,7 @@
   var respostas = {};      // id da pergunta -> resposta (fica guardada se a pergunta sumir e voltar)
   var guiaAtual = "";
   var MAX_PERGUNTAS = 6;
-  var PERGUNTAS_DO_FORMULARIO = ["Para quando? (prazo)", "Já tem site ou endereço (domínio)?", "Quanto pensa em investir?", "Em que cidade?"];
+  var PERGUNTAS_DO_FORMULARIO = ["Para quando? (prazo)", "Já tem site ou endereço (domínio)?", "Quanto pensa em investir?", "Em que cidade?", "Qual celular usa?", "Usa serviços do Google?", "Tem assinatura ativa?"];
   var perguntasIA = [];    // perguntas sugeridas pela IA para este pedido (entram depois das fixas)
 
   var BANCO = {
@@ -403,8 +403,45 @@
   }
   if (botaoIA) botaoIA.addEventListener("click", pedirIA);
 
+  // Celular, Google e assinaturas viajam como a primeira "pergunta rápida", que já vai para a planilha e para o e-mail.
+  function perfilDeUso() {
+    var d = new FormData(form);
+    var assin = d.getAll("assinatura").map(function (v) { return limpar(v, 40); }).filter(Boolean);
+    if (assin.indexOf("Nenhuma") !== -1) assin = ["Nenhuma"];
+    assin = assin.map(function (v) {
+      if (v === "IA") {
+        var ias = d.getAll("assinatura_ia").map(function (x) { return limpar(x, 20); }).filter(Boolean).map(function (x) {
+          return x === "Outra IA" ? "outra: " + (limpar(d.get("ia_outra"), 60) || "não disse qual") : x;
+        });
+        return "IA (" + (ias.length ? ias.join(", ") : "não disse qual") + ")";
+      }
+      if (v === "Outra") return "Outra (" + (limpar(d.get("assin_outra"), 60) || "não disse qual") + ")";
+      return v;
+    });
+    return {
+      p: "O que já usa:",
+      r: limpar("Celular: " + limpar(d.get("celular"), 30) + "; Google: " + limpar(d.get("google"), 30) +
+        "; Assinaturas: " + (assin.length ? assin.join(", ") : "não informou"), 300)
+    };
+  }
+
+  // Caixas que abrem conforme a assinatura marcada: qual IA e qual outra assinatura.
+  function atualizarSubAssinaturas() {
+    function marcado(nome, valor) { return !!form.querySelector('input[name="' + nome + '"][value="' + valor + '"]:checked'); }
+    var nenhuma = marcado("assinatura", "Nenhuma");
+    var ia = marcado("assinatura", "IA") && !nenhuma;
+    var subIa = document.getElementById("sub-ia"), subOutra = document.getElementById("sub-outra"), iaOutra = document.getElementById("sub-ia-outra");
+    if (subIa) subIa.hidden = !ia;
+    if (subOutra) subOutra.hidden = !(marcado("assinatura", "Outra") && !nenhuma);
+    if (iaOutra) iaOutra.hidden = !(ia && marcado("assinatura_ia", "Outra IA"));
+  }
+  form.querySelectorAll('input[name="assinatura"], input[name="assinatura_ia"]').forEach(function (c) {
+    c.addEventListener("change", atualizarSubAssinaturas);
+  });
+  form.addEventListener("reset", function () { setTimeout(atualizarSubAssinaturas, 0); });
+
   function respostasDadas() {
-    var saida = [];
+    var saida = [perfilDeUso()];
     perguntasDaVez().forEach(function (q) {
       var r = limpar(respostas[q.id], 300);
       if (r) saida.push({ p: limpar(q.p, 160), r: r });
